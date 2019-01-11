@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
-const http = require('http').Server(app);
+const http = require('http').Server(app).listen(3000, '0.0.0.0', () => {
+    console.log(`Listening on port ${3000}`);
+});
 const io = require('socket.io')(http);
 
 app.use(express.static(`${__dirname}/public`));
@@ -10,7 +12,8 @@ app.get('/', (req, res, next) => {
 });
 
 io.on('connection', socket => {
-    console.log('A user has connected!');
+    socket.broadcast.emit('joined', 'Another user has joined the chat!');
+
     socket.on('disconnect', () => {
         console.log('A user has disconnected!');
     });

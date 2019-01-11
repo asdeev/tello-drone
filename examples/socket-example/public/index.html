@@ -25,10 +25,13 @@
                 m.value = '';
                 return false;
             });
-            socket.on('chat message', (msg) => {
+            socket.on('chat message', msg => {
                 let li = document.createElement('li');
                 li.appendChild(document.createTextNode(msg));
                 messages.appendChild(li);
+            });
+            socket.on('joined', msg => {
+                console.log(msg);
             });
         }
     </script>
