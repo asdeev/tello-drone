@@ -80,4 +80,5 @@ typings/
 .dynamodb/
 
 # Everything else
-.code-workspace
+*.code-workspace
+*.pdf
